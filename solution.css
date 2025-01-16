@@ -1,0 +1,23 @@
+/* solution.css */
+
+/* Instead of directly using calc(), use max() to ensure the value is never negative */
+.element {
+  width: max(0, calc(100% - 200px)); /* Ensures width is never negative */
+}
+
+/* Alternatively, use a media query or conditional logic to handle cases where calc() could result in a negative value */
+@media (max-width: 200px) {
+  .element {
+    width: 0; /* Handle cases where the container is less than 200px */
+  }
+}
+
+/* Another approach using CSS variables for better readability and maintainability*/
+:root {
+  --container-width: 100%;
+  --element-offset: 200px;
+}
+
+.element {
+  width: max(0, calc(var(--container-width) - var(--element-offset)));
+}
